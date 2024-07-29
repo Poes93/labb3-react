@@ -1,10 +1,13 @@
 import React from 'react';
-import { createRoot } from 'react-dom';
-import App from '../pages/_app.jsx';
-import '../styles/index.css';  
+import MovieList from '../components/MovieList'; 
 
-createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const Home = () => {
+  return (
+    <div>
+      <h1>Welcome to MovieDB</h1>
+      <MovieList />
+    </div>
+  );
+};
+
+export default Home;

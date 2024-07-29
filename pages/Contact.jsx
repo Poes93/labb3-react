@@ -5,6 +5,7 @@ const Contact = () => {
     <div>
       <h1>Contact Us</h1>
       <p>You can reach us at contact@moviedb.com</p>
+      <p>We'd love to hear from you!</p>
     </div>
   );
 };

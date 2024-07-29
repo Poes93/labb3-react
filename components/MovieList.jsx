@@ -3,9 +3,9 @@ import MovieCard from './MovieCard';
 import SearchBar from './SearchBar';
 import Filter from './Filter';
 import Pagination from './Pagination';
-import './styles/MovieList.css';
+//import '../styles/MovieList.css';
 
-const MoviesList = () => {
+const MovieList = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -68,4 +68,4 @@ const MoviesList = () => {
     );
 };
 
-export default MoviesList;
+export default MovieList;

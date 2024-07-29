@@ -1,6 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./styles/Navbar.css";
+import Link from 'next/link';
 
 const Navbar = () => {
     return (
@@ -12,6 +10,7 @@ const Navbar = () => {
                 <Link to="/">Home</Link>
                 <Link to="/movies">Movies</Link>
                 <Link to="/about">About</Link>
+                <Link to="/contact">Contact</Link>
             </div>
             <div className="navbar-search">
                 <input type="text" placeholder="Search..." />
