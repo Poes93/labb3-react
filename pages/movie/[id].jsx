@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import MovieDetail from '../../components/MovieDetail'
-import CastList from '../../components/CastList'
-import SimilarMovies from '../../components/SimilarMovies'
 
 export default function MoviePage({ movie, cast, similarMovies }) {
     const router = useRouter()

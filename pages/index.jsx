@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import MovieList from '../components/MovieList'
 import SearchBar from '../components/SearchBar'
