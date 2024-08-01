@@ -1,46 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-//import '../styles/MovieDetail.css';
+import Link from 'next/link'
+import PropTypes from 'prop-types'
 
-const MovieDetail = () => {
-    const { id } = useParams();
-    const [movie, setMovie] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        fetchMovieDetail();
-    }, [id]);
-
-    const fetchMovieDetail = async () => {
-        try {
-            const response = await fetch(`https://graph.imdbapi.dev/v1/movies/${id}`); 
-            if (!response.ok) {
-                throw new Error('Failed to fetch movie details');
-            }
-            const data = await response.json();
-            setMovie(data);
-            setLoading(false);
-        } catch (error) {
-            setError(error.message);
-            setLoading(false);
+export default function MovieDetail({ movie }) {
+  return (
+    <div className="movie-detail">
+      <h1>{movie.title}</h1>
+      <p>{movie.overview}</p>
+      <p>Release Date: {movie.release_date}</p>
+      <p>Rating: {movie.vote_average}</p>
+      <Link href="/">
+        <a className="back-link">Back to home</a>
+      </Link>
+      <style jsx>{`
+        .movie-detail {
+          padding: 1rem;
         }
-    };
+        .back-link {
+          display: inline-block;
+          margin-top: 1rem;
+          color: blue;
+          text-decoration: underline;
+        }
+        .back-link:hover {
+          text-decoration: none;
+        }
+      `}</style>
+    </div>
+  )
+}
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-    if (!movie) return <div>Movie not found</div>;
-
-    return (
-        <div className="movie-detail">
-            <img src={movie.posterUrl} alt={`${movie.title} Poster`} className="movie-detail-img" />
-            <div className="movie-detail-content">
-                <h2 className="movie-detail-title">{movie.title}</h2>
-                <p className="movie-detail-release-date">Release Date: {movie.releaseDate}</p>
-                <p className="movie-detail-description">{movie.description}</p>
-            </div>
-        </div>
-    );
-};
-
-export default MovieDetail;
+MovieDetail.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired
+  }).isRequired
+}

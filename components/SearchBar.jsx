@@ -1,32 +1,28 @@
-import React, { useState } from 'react';
-//import '../styles/SearchBar.css';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const SearchBar = ({ onSearch }) => {
-    const [query, setQuery] = useState('');
+export default function SearchBar({ onSearch }) {
+  const [query, setQuery] = useState('')
 
-    const handleInputChange = (e) => {
-        setQuery(e.target.value);
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSearch(query)
+  }
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        if (query.trim()) {
-            onSearch(query);
-        }
-    };
+  return (
+    <form onSubmit={handleSubmit} data-testid="search-form">
+      <input
+        type="text"
+        placeholder="Search movies..."
+        aria-label="Search movies"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button type="submit">Search</button>
+    </form>
+  )
+}
 
-    return (
-        <form className="search-bar" onSubmit={handleSearch}>
-            <input
-                type="text"
-                placeholder="Search movies..."
-                value={query}
-                onChange={handleInputChange}
-                className="search-input"
-            />
-            <button type="submit" className="search-button">Search</button>
-        </form>
-    );
-};
-
-export default SearchBar;
+SearchBar.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+}
