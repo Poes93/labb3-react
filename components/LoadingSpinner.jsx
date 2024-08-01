@@ -1,3 +1,4 @@
+import React from 'react'
 export default function LoadingSpinner({ size = 36, color = "#09f" }) {
   return (
     <div className="spinner" aria-label="Loading">
